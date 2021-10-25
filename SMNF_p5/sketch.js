@@ -6,39 +6,31 @@ let keys = [];
 let isPlaying = false;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(50, 50);
   background(200);
 
   osc = new p5.Oscillator('sine');
-  // noiseSeed(10);
   freq = 300;
-  // osc.stop();
-  // frameRate(40);
 }
 
 function draw() {
+  background(freq/tic);
   if (isPlaying) {
-    // if (tic < 16) {
-    //   // d = map(noise(t), 0, 1, 10, 200);
-    //   freq = map(noise(t), 0, 1, -2000, 2000);
-    //   osc.freq(freq, 0.1);
-    //   osc.amp(0.2, 0.1);
-    //
-    //   t += 1;
-    //   tic++;
-    //   print(freq);
-    // } else {
-    //   osc.stop();
-    // }
-
     // dig(10, 16, 2000, 1);
-    dig(107, 8, 20000, 0.01);
+    // dig(107, 8, 20000, 0.01);
     // dig(107, 16, 5000, 0.5);
     // dig(7, 16, 2000, 1);
     // dig(99, 16, 2000, 0.2);
     // dig(10, 16, 2000, 1);
+    dig(77, 8, 1000, 0.5);
     tic++;
   }
+}
+
+function dot(f) {
+  strokeWeight(2);
+  stroke(0);
+  point(width/2, f/10);
 }
 
 function dig(seed, ticSteps, freqRange, tStep) {
@@ -46,13 +38,14 @@ function dig(seed, ticSteps, freqRange, tStep) {
   if (tic < ticSteps) {
     let freq = map(noise(t), 0, 1, -freqRange, freqRange);
     osc.freq(freq, 0.2);
-    osc.amp(0.1, 0.2);
+    osc.amp(0.4, 0.2);
     t += tStep;
-    // print(freq);
   } else {
     osc.stop();
     dug();
   }
+  print(freq);
+  return freq;
 }
 
 function dug() {
@@ -64,7 +57,6 @@ function dug() {
     osc.start();
   } else {
     newKeys();
-    dug();
   }
 }
 
@@ -76,7 +68,7 @@ function keyTyped() {
 }
 
 function newKeys() {
-  keys = "7AZ      ".split('');
+  keys = "09D09DD".split('');
   keys.reverse();
 }
 
