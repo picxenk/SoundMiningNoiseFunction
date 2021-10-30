@@ -56,4 +56,5 @@ function keyTyped() {
 function mouseClicked() {
   isPlaying = true;
   osc.start();
+  newKeys();
 }
